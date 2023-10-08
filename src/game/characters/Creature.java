@@ -25,22 +25,90 @@ public abstract class Creature {
     int health; // Здоровье от 0 до N
     int maxHealth; // Максимальное здоровье - N
 
+    int minDamage;
+
+    int maxDamage;
 
 
-    public Creature() {
-        this.attack = attack;
-        this.armor = armor;
-        this.health = health;
+
+    public Creature(Scanner in) {
+        getSpecifications(in);
     }
 
-    private void getNormalAttack(Scanner in) {
+    private void getSpecifications(Scanner in) {
+        getCorrectAttack(in);
+        getCorrectArmor(in);
+        getCorrectHealth(in);
+        getCorrectDamage(in);
+    }
+
+    private void getCorrectAttack(Scanner in) {
         boolean input = true;
         while (input) {
             try {
+                System.out.println("Введите показатель атаки: ");
                 attack = Integer.parseInt(in.nextLine());
+                if(attack < 0 || attack > 30) throw new NumberFormatException();
                 input = false;
             } catch (NumberFormatException e) {
                 System.out.println("Введено неверное значение атаки!");
+                input = true;
+            }
+        }
+    }
+
+    private void getCorrectArmor(Scanner in) {
+        boolean input = true;
+        while (input) {
+            try {
+                System.out.println("Введите показатель защиты: ");
+                armor = Integer.parseInt(in.nextLine());
+                if(armor < 0 || armor > 30) throw new NumberFormatException();
+                input = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Введено неверное значение защиты!");
+                input = true;
+            }
+        }
+    }
+
+    private void getCorrectHealth(Scanner in) {
+        boolean input = true;
+        while (input) {
+            try {
+                System.out.println("Введите показатель здоровья: ");
+                health = Integer.parseInt(in.nextLine());
+                if(health < 0) throw new NumberFormatException();
+                input = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Введено неверное значение здоровья!");
+                input = true;
+            }
+        }
+    }
+
+    private void getCorrectDamage(Scanner in) {
+        boolean input = true;
+        while (input) {
+            try {
+                System.out.println("Введите показатель минимального урона: ");
+                minDamage = Integer.parseInt(in.nextLine());
+                if(minDamage < 0) throw new NumberFormatException();
+                input = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Введено неверное значение минимального урона!");
+                input = true;
+            }
+        }
+        input = true;
+        while (input) {
+            try {
+                System.out.println("Введите показатель максимального урона: ");
+                maxDamage = Integer.parseInt(in.nextLine());
+                if(maxDamage < minDamage) throw new NumberFormatException();
+                input = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Введено неверное значение максимального урона!");
                 input = true;
             }
         }

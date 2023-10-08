@@ -1,5 +1,7 @@
 package game.characters;
 
+import java.util.Scanner;
+
 /**
  * @author hatka_bobrikov
  * @created 08.10.2023 18:40
@@ -21,4 +23,8 @@ public class Player extends Creature {
     int maxHealth; // Максимальное здоровье - N
     int healCount = 0; // Счетчик кол-ва исцелений, до 4
     double healSize = 0.3; // Размер 1-го исцелений от максимального здоровья
+
+    public Player(Scanner in) {
+        super(in);
+    }
 }
