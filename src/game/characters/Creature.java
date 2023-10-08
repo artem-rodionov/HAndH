@@ -1,5 +1,7 @@
 package game.characters;
 
+import game.service.Dice;
+
 import java.util.Scanner;
 
 /**
@@ -31,7 +33,7 @@ public abstract class Creature {
     private int maxDamage;
 
 
-
+    public Creature() {};
     public Creature(Scanner in) {
         getSpecifications(in);
     }
@@ -126,13 +128,17 @@ public abstract class Creature {
         return health > 0;
     }
 
-    public void fight(Creature another) { //this атакует another
+    public boolean fight(Creature another) { //this атакует another
         int diceCount = Math.max((attack - another.getAttack() + 1), 1);
         if(dice.attacking(diceCount)) {
             System.out.println("Атака успешна!");
             another.setHealth(another.getHealth() - dice.roll(minDamage,maxDamage));
+            return true;
         }
-        else System.out.println("Атака не прошла!");
+        else {
+            System.out.println("Атака не прошла!");
+            return false;
+        }
     }
 
 

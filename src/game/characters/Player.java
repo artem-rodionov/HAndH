@@ -23,17 +23,24 @@ public class Player extends Creature {
     private int maxHealth; // Максимальное здоровье - N
     private int healCount = 4; // Счетчик кол-ва исцелений, до 4
     private double healSize = 0.3; // Размер 1-го исцелений от максимального здоровья
+    private int healthHeal;
 
     public Player(Scanner in) {
         super(in);
         maxHealth = getHealth();
+        healthHeal = (int)(0.3*maxHealth);
     }
 
     @Override
     public void getInfo() {
+        System.out.println("\n=== Информация об игроке ===");
         super.getInfo();
         System.out.println("Начальное(максимальное) здоровье: " + maxHealth);
         System.out.println("Оставшееся количество исцелений: " + healCount);
+    }
+
+    public void healing() {
+        setHealth((getHealth() + healthHeal) > maxHealth ? maxHealth : (getHealth() + healthHeal));
     }
 
     public int getMaxHealth() {
