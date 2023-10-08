@@ -31,6 +31,12 @@ public class Player extends Creature {
         healthHeal = (int)(0.3*maxHealth);
     }
 
+    public Player() {
+        super();
+        maxHealth = getHealth();
+        healthHeal = (int)(0.3*maxHealth);
+    }
+
     @Override
     public void getInfo() {
         System.out.println("\n=== Информация об игроке ===");
@@ -40,7 +46,10 @@ public class Player extends Creature {
     }
 
     public void healing() {
-        setHealth((getHealth() + healthHeal) > maxHealth ? maxHealth : (getHealth() + healthHeal));
+        if(healCount > 0) {
+            setHealth((getHealth() + healthHeal) > maxHealth ? maxHealth : (getHealth() + healthHeal));
+            healCount--;
+        }
     }
 
     public int getMaxHealth() {

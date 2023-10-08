@@ -12,6 +12,10 @@ public class Monster extends Creature {
         super(in);
     }
 
+    public Monster() {
+        super();
+    }
+
     @Override
     public void getInfo() {
         System.out.println("\n=== Информация о монстре ===");

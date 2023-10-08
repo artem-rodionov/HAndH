@@ -2,6 +2,7 @@ package game.gamemode;
 
 import game.characters.Monster;
 import game.characters.Player;
+
 import java.util.Scanner;
 
 /**
@@ -17,20 +18,23 @@ public class GameMode {
 
     public GameMode() {
         System.out.println("===    Запуск игры   ===");
-
+        int mode = 0;
         boolean input = true;
-        while(input) {
+        while (input) {
             try {
-                System.out.println("Выберите режим игры: \n - ручной(1)\n - автоматический(2) \nРежим: ");
-                int mode = Integer.parseInt(in.nextLine());
-                if(mode != 1 || mode != 2) throw new NumberFormatException();
+                System.out.print("Выберите режим игры: \n - ручной(1)\n - автоматический(2) \nРежим: ");
+                mode = Integer.parseInt(in.nextLine());
+                if (mode != 1 && mode != 2) throw new NumberFormatException();
                 input = false;
-            }
-            catch (NumberFormatException e) {
-                System.out.println("Непривильный выбор режима!");
+            } catch (NumberFormatException e) {
+                System.out.println("Неправильный выбор режима!");
             }
         }
-        this.init();
+        if (mode == 1) {
+            this.init();
+        } else {
+            this.auto_init();
+        }
     }
 
     private void init() {
@@ -40,25 +44,58 @@ public class GameMode {
         System.out.println("\n=== Создание монстра ===");
         monster = new Monster(in);
         monster.getInfo();
-        this.start();
+        this.start(1);
     }
 
-    private void start() {
-        System.out.println("\n\n=== Начало сражения ===\n\n");
-        while(gameIsOn) {
+    private void auto_init() {
+        System.out.println("\n===  Создание игрока ===");
+        player = new Player();
+        player.getInfo();
+        System.out.println("\n=== Создание монстра ===");
+        monster = new Monster();
+        monster.getInfo();
+        this.start(2);
+    }
 
+    private void start(int mode) {
+        System.out.println("\n\n=== Начало сражения ===\n\n");
+        while (gameIsOn) {
+            if (mode == 1 && player.getHealCount() > 0) {
+                String answer = null;
+                boolean input = true;
+                while (input) {
+                    try {
+                        System.out.println("\nИспользовать лечение ? [Да/Нет]");
+                        answer = in.nextLine();
+                        if (!answer.equals("Да") && !answer.equals("Нет")) throw new NumberFormatException();
+                        input = false;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Неправильный вариант ответа!");
+                    }
+                }
+                if (answer.equals("Да")) {
+                    player.healing();
+                    System.out.println("\nТекущее здоровье: " + player.getHealth() + "\nОсталось лечений: " + player.getHealCount());
+                }
+            }
+            else if(player.getHealCount() > 0){
+                if (player.getHealth() < player.getMaxHealth()*0.5) {
+                    player.healing();
+                    System.out.println("\nИспользуется лечение\nТекущее здоровье: " + player.getHealth() + "\nОсталось лечений: " + player.getHealCount());
+                }
+            }
             System.out.println(("\nАтака игрока"));
-            if(player.fight(monster)) {
+            if (player.fight(monster)) {
                 monster.getInfo();
             }
-            if(!monster.isAlive()) {
+            if (!monster.isAlive()) {
                 System.out.println("=== Игрок победил ===");
                 gameIsOn = false;
                 break;
             }
 
             System.out.println("\nАтака монстра");
-            if(monster.fight(player)) {
+            if (monster.fight(player)) {
                 player.getInfo();
             }
             if (!player.isAlive()) {

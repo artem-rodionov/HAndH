@@ -33,7 +33,13 @@ public abstract class Creature {
     private int maxDamage;
 
 
-    public Creature() {};
+    public Creature() {
+        attack = dice.roll(0,30);
+        armor = dice.roll(0,30);
+        health = dice.roll(0,100);
+        minDamage = dice.roll(0,20);
+        maxDamage = dice.roll(minDamage, 30);
+    };
     public Creature(Scanner in) {
         getSpecifications(in);
     }
