@@ -21,5 +21,6 @@ public class GameMode {
 
     private void init() {
         player = new Player(in);
+        player.getInfo();
     }
 }

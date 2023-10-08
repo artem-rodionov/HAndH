@@ -20,14 +20,15 @@ import java.util.Scanner;
   - Если удар успешен, то берется произвольное значение из параметра Урон атакующего и вычитается из Здоровья защищающегося.
  */
 public abstract class Creature {
-    int attack; //Атака от 0 до 30
-    int armor;  //Защита от 0 до 30
-    int health; // Здоровье от 0 до N
-    int maxHealth; // Максимальное здоровье - N
 
-    int minDamage;
+    private final Dice dice = new Dice();
+    private int attack; //Атака от 0 до 30
+    private int armor;  //Защита от 0 до 30
+    private int health; // Здоровье от 0 до N
 
-    int maxDamage;
+    private int minDamage;
+
+    private int maxDamage;
 
 
 
@@ -40,13 +41,13 @@ public abstract class Creature {
         getCorrectArmor(in);
         getCorrectHealth(in);
         getCorrectDamage(in);
-    }
+    } //ввод характеристик
 
     private void getCorrectAttack(Scanner in) {
         boolean input = true;
         while (input) {
             try {
-                System.out.println("Введите показатель атаки: ");
+                System.out.print("Введите показатель атаки (0-30): ");
                 attack = Integer.parseInt(in.nextLine());
                 if(attack < 0 || attack > 30) throw new NumberFormatException();
                 input = false;
@@ -55,13 +56,13 @@ public abstract class Creature {
                 input = true;
             }
         }
-    }
+    } //ввод корректной атаки
 
     private void getCorrectArmor(Scanner in) {
         boolean input = true;
         while (input) {
             try {
-                System.out.println("Введите показатель защиты: ");
+                System.out.print("Введите показатель защиты (0-30): ");
                 armor = Integer.parseInt(in.nextLine());
                 if(armor < 0 || armor > 30) throw new NumberFormatException();
                 input = false;
@@ -70,13 +71,13 @@ public abstract class Creature {
                 input = true;
             }
         }
-    }
+    } //ввод корректной защиты
 
     private void getCorrectHealth(Scanner in) {
         boolean input = true;
         while (input) {
             try {
-                System.out.println("Введите показатель здоровья: ");
+                System.out.print("Введите показатель здоровья (>0): ");
                 health = Integer.parseInt(in.nextLine());
                 if(health < 0) throw new NumberFormatException();
                 input = false;
@@ -85,13 +86,13 @@ public abstract class Creature {
                 input = true;
             }
         }
-    }
+    } //ввод корректной здоровья
 
     private void getCorrectDamage(Scanner in) {
         boolean input = true;
         while (input) {
             try {
-                System.out.println("Введите показатель минимального урона: ");
+                System.out.print("Введите показатель минимального урона: ");
                 minDamage = Integer.parseInt(in.nextLine());
                 if(minDamage < 0) throw new NumberFormatException();
                 input = false;
@@ -103,7 +104,7 @@ public abstract class Creature {
         input = true;
         while (input) {
             try {
-                System.out.println("Введите показатель максимального урона: ");
+                System.out.print("Введите показатель максимального урона: ");
                 maxDamage = Integer.parseInt(in.nextLine());
                 if(maxDamage < minDamage) throw new NumberFormatException();
                 input = false;
@@ -112,5 +113,50 @@ public abstract class Creature {
                 input = true;
             }
         }
+    } //ввод корректного урона
+
+    public void getInfo() {
+        System.out.println("Атака: " + attack);
+        System.out.println("Защита: " + armor);
+        System.out.println("Текущее здоровье: " + health);
+        System.out.println("Урон: " + minDamage + "-" + maxDamage);
+    }
+
+    public boolean isAlive() {
+        return health > 0;
+    }
+
+    public void fight(Creature another) { //this атакует another
+        int diceCount = Math.max((attack - another.getAttack() + 1), 1);
+        if(dice.attacking(diceCount)) {
+            System.out.println("Атака успешна!");
+            another.setHealth(another.getHealth() - dice.roll(minDamage,maxDamage));
+        }
+        else System.out.println("Атака не прошла!");
+    }
+
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getArmor() {
+        return armor;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getMinDamage() {
+        return minDamage;
+    }
+
+    public int getMaxDamage() {
+        return maxDamage;
     }
 }
