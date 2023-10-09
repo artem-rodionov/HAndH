@@ -1,2 +1,2 @@
 # HAndH
-th: https://t.me/hatka_bobrikov
+tg: https://t.me/hatka_bobrikov
