@@ -39,7 +39,7 @@ public abstract class Creature {
         health = dice.roll(0,100);
         minDamage = dice.roll(0,20);
         maxDamage = dice.roll(minDamage, 30);
-    };
+    }
     public Creature(Scanner in) {
         getSpecifications(in);
     }
@@ -61,7 +61,6 @@ public abstract class Creature {
                 input = false;
             } catch (NumberFormatException e) {
                 System.out.println("Введено неверное значение атаки!");
-                input = true;
             }
         }
     } //ввод корректной атаки
@@ -76,7 +75,6 @@ public abstract class Creature {
                 input = false;
             } catch (NumberFormatException e) {
                 System.out.println("Введено неверное значение защиты!");
-                input = true;
             }
         }
     } //ввод корректной защиты
@@ -91,7 +89,6 @@ public abstract class Creature {
                 input = false;
             } catch (NumberFormatException e) {
                 System.out.println("Введено неверное значение здоровья!");
-                input = true;
             }
         }
     } //ввод корректной здоровья
@@ -106,7 +103,6 @@ public abstract class Creature {
                 input = false;
             } catch (NumberFormatException e) {
                 System.out.println("Введено неверное значение минимального урона!");
-                input = true;
             }
         }
         input = true;
@@ -118,7 +114,6 @@ public abstract class Creature {
                 input = false;
             } catch (NumberFormatException e) {
                 System.out.println("Введено неверное значение максимального урона!");
-                input = true;
             }
         }
     } //ввод корректного урона
@@ -148,7 +143,7 @@ public abstract class Creature {
     }
 
 
-    public void setHealth(int health) {
+    protected void setHealth(int health) {
         this.health = health;
     }
 

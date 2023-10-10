@@ -20,10 +20,10 @@ import java.util.Scanner;
   - Если удар успешен, то берется произвольное значение из параметра Урон атакующего и вычитается из Здоровья защищающегося.
  */
 public class Player extends Creature {
-    private int maxHealth; // Максимальное здоровье - N
+    private final int maxHealth; // Максимальное здоровье - N
     private int healCount = 4; // Счетчик кол-ва исцелений, до 4
-    private double healSize = 0.3; // Размер 1-го исцелений от максимального здоровья
-    private int healthHeal;
+    private final double healSize = 0.3; // Размер 1-го исцелений от максимального здоровья
+    private final int healthHeal;
 
     public Player(Scanner in) {
         super(in);

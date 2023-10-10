@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7bfe8de5-cea3-440d-818d-352300410862" name="Changes" comment="start in GameMode, healing in Player">
+    <list default="true" id="7bfe8de5-cea3-440d-818d-352300410862" name="Changes" comment="auto and manual game mode in GameMode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/characters/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/characters/Creature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/characters/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/characters/Monster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/characters/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/characters/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/gamemode/GameMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/gamemode/GameMode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +58,7 @@
       <updated>1696595519724</updated>
       <workItem from="1696595520973" duration="1726000" />
       <workItem from="1696701371261" duration="77000" />
-      <workItem from="1696770086987" duration="21453000" />
+      <workItem from="1696770086987" duration="22586000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1696784096991</created>
@@ -90,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696802952168</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="auto and manual game mode in GameMode">
+      <created>1696805126721</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696805126721</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,7 +129,8 @@
     <MESSAGE value="Make correct input of specifications in Creature&#10;Make Dice with roll&#10;Make game start" />
     <MESSAGE value="Make fight, getInfo, isAlive, setters and getters in Creature, attacking and roll with args in Dice" />
     <MESSAGE value="start in GameMode, healing in Player" />
-    <option name="LAST_COMMIT_MESSAGE" value="start in GameMode, healing in Player" />
+    <MESSAGE value="auto and manual game mode in GameMode" />
+    <option name="LAST_COMMIT_MESSAGE" value="auto and manual game mode in GameMode" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
